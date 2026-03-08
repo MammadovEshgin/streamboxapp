@@ -36,7 +36,9 @@ const tabs: ScreenTab[] = [
     desc: "Deep viewing insights & your viewer DNA",
     screens: [
       { src: screenStats, label: "Stats" },
+      { src: screenGenreRadar, label: "Genres" },
       { src: screenActors, label: "Top Actors" },
+      { src: screenTasteProfile, label: "Taste Profile" },
       { src: screenPersona, label: "Persona" },
     ],
   },
