@@ -7,6 +7,8 @@ import screenSeries from "@/assets/screen-series.jpeg";
 import screenStats from "@/assets/screen-stats.jpeg";
 import screenActors from "@/assets/screen-actors.jpeg";
 import screenPersona from "@/assets/screen-persona.jpeg";
+import screenGenreRadar from "@/assets/screen-genre-radar.jpeg";
+import screenTasteProfile from "@/assets/screen-taste-profile.jpeg";
 import screenMovieDetail from "@/assets/screen-movie-detail.jpeg";
 import screenSeriesDetail from "@/assets/screen-series-detail.jpeg";
 import screenActorDetail from "@/assets/screen-actor-detail.jpeg";
@@ -34,7 +36,9 @@ const tabs: ScreenTab[] = [
     desc: "Deep viewing insights & your viewer DNA",
     screens: [
       { src: screenStats, label: "Stats" },
+      { src: screenGenreRadar, label: "Genres" },
       { src: screenActors, label: "Top Actors" },
+      { src: screenTasteProfile, label: "Taste Profile" },
       { src: screenPersona, label: "Persona" },
     ],
   },
@@ -109,7 +113,7 @@ const ScreenshotsSection = () => {
                   className="w-52 sm:w-60 md:w-64 phone-shadow"
                 />
               ) : (
-                <div className="flex flex-wrap justify-center gap-4">
+                <div className="flex flex-wrap justify-center gap-3">
                   {activeTab.screens.map((screen, i) => (
                     <motion.div
                       key={screen.label}
@@ -121,7 +125,7 @@ const ScreenshotsSection = () => {
                       <PhoneMockup
                         src={screen.src}
                         alt={screen.label}
-                        className="w-40 sm:w-44 md:w-48 phone-shadow"
+                        className="w-28 sm:w-32 md:w-36 phone-shadow"
                       />
                       <p className="mt-2 text-xs font-medium text-muted-foreground">
                         {screen.label}
