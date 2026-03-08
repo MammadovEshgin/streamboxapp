@@ -1,20 +1,20 @@
 import { motion } from "framer-motion";
-import { Film, Menu, X } from "lucide-react";
+import { Clapperboard, Menu, X } from "lucide-react";
 import { useState } from "react";
 
-const navLinks = ["Features", "App Preview", "Download"];
+const navLinks = ["Features", "App Preview"];
 
 const Navbar = () => {
   const [mobileOpen, setMobileOpen] = useState(false);
 
-  const scrollTo = (label: string) => {
-    const idMap: Record<string, string> = {
-      "Features": "features",
-      "App Preview": "app-preview",
-      "Download": "download",
-    };
-    document.getElementById(idMap[label] || label.toLowerCase())?.scrollIntoView({ behavior: "smooth" });
+  const scrollTo = (id: string) => {
+    document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
     setMobileOpen(false);
+  };
+
+  const idMap: Record<string, string> = {
+    Features: "features",
+    "App Preview": "app-preview",
   };
 
   return (
@@ -25,9 +25,9 @@ const Navbar = () => {
       className="fixed top-0 left-0 right-0 z-50 glass-card"
     >
       <div className="container flex items-center justify-between h-16 md:h-20">
-        <div className="flex items-center gap-2">
-          <div className="w-9 h-9 rounded-lg bg-primary flex items-center justify-center">
-            <Film className="w-5 h-5 text-primary-foreground" />
+        <div className="flex items-center gap-2.5">
+          <div className="w-9 h-9 rounded-[4px] bg-primary flex items-center justify-center">
+            <Clapperboard className="w-5 h-5 text-primary-foreground" />
           </div>
           <span className="font-display font-bold text-lg text-foreground tracking-tight">
             CineTrack
@@ -38,12 +38,18 @@ const Navbar = () => {
           {navLinks.map((link) => (
             <button
               key={link}
-              onClick={() => scrollTo(link)}
+              onClick={() => scrollTo(idMap[link])}
               className="text-sm text-muted-foreground hover:text-foreground transition-colors duration-200 font-medium"
             >
               {link}
             </button>
           ))}
+          <button
+            onClick={() => scrollTo("download")}
+            className="px-4 py-2 text-sm font-semibold rounded-[4px] bg-primary text-primary-foreground hover:brightness-110 transition-all duration-200"
+          >
+            Get the App
+          </button>
         </div>
 
         <button
@@ -64,12 +70,18 @@ const Navbar = () => {
             {navLinks.map((link) => (
               <button
                 key={link}
-                onClick={() => scrollTo(link)}
+                onClick={() => scrollTo(idMap[link])}
                 className="text-sm text-muted-foreground hover:text-foreground transition-colors py-2 text-left font-medium"
               >
                 {link}
               </button>
             ))}
+            <button
+              onClick={() => scrollTo("download")}
+              className="text-sm text-left py-2 font-semibold text-primary"
+            >
+              Get the App
+            </button>
           </div>
         </motion.div>
       )}
