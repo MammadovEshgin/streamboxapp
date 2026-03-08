@@ -2,8 +2,8 @@ import { motion } from "framer-motion";
 import { Play, Star } from "lucide-react";
 import PhoneMockup from "./PhoneMockup";
 import screenDiscover from "@/assets/screen-discover.jpeg";
-import screenMovies from "@/assets/screen-movies.jpeg";
-import screenSeries from "@/assets/screen-series.jpeg";
+import screenMovieDetail from "@/assets/screen-movie-detail.jpeg";
+import screenSeriesDetail from "@/assets/screen-series-detail.jpeg";
 
 const HeroSection = () => {
   const scrollToDownload = () => {
@@ -32,21 +32,21 @@ const HeroSection = () => {
             >
               <Star className="w-3.5 h-3.5 text-primary fill-primary" />
               <span className="text-xs font-medium text-muted-foreground tracking-wide uppercase">
-                Track Every Frame
+                Stream Anywhere
               </span>
             </motion.div>
 
             <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-display font-bold leading-[1.05] tracking-tight mb-6">
-              <span className="text-gradient-white">Your Movies.</span>
+              <span className="text-gradient-white">Stream Movies.</span>
               <br />
-              <span className="text-gradient-white">Your Series.</span>
+              <span className="text-gradient-white">Binge Series.</span>
               <br />
-              <span className="text-gradient-primary">Your Stats.</span>
+              <span className="text-gradient-primary">All in One App.</span>
             </h1>
 
             <p className="text-base md:text-lg text-muted-foreground max-w-lg mx-auto lg:mx-0 mb-8 leading-relaxed">
-              Discover, track, and analyze your watching habits with beautiful insights. 
-              The ultimate companion app for movie and series enthusiasts.
+              Your ultimate streaming companion — discover, watch, and track thousands of movies and series 
+              with personalized recommendations and detailed insights.
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
@@ -55,7 +55,7 @@ const HeroSection = () => {
                 className="inline-flex items-center justify-center gap-2.5 px-7 py-3.5 rounded-full bg-primary text-primary-foreground font-semibold text-sm hover:brightness-110 transition-all duration-200 shadow-lg shadow-primary/25"
               >
                 <Play className="w-4 h-4 fill-current" />
-                Download Now
+                Start Watching
               </button>
               <button
                 onClick={() => document.getElementById("features")?.scrollIntoView({ behavior: "smooth" })}
@@ -84,7 +84,7 @@ const HeroSection = () => {
                 ))}
               </div>
               <div className="text-left">
-                <p className="text-sm font-semibold text-foreground">50K+ Users</p>
+                <p className="text-sm font-semibold text-foreground">50K+ Streamers</p>
                 <div className="flex items-center gap-1">
                   {[1, 2, 3, 4, 5].map((i) => (
                     <Star key={i} className="w-3 h-3 text-gold fill-gold" />
@@ -110,8 +110,8 @@ const HeroSection = () => {
                 transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
               >
                 <PhoneMockup
-                  src={screenMovies}
-                  alt="Movies screen"
+                  src={screenMovieDetail}
+                  alt="Movie detail screen"
                   className="w-36 sm:w-44 md:w-52 opacity-50 blur-[1px] scale-90 rotate-[-8deg]"
                 />
               </motion.div>
@@ -136,8 +136,8 @@ const HeroSection = () => {
                 transition={{ duration: 5.5, repeat: Infinity, ease: "easeInOut", delay: 1 }}
               >
                 <PhoneMockup
-                  src={screenSeries}
-                  alt="Series screen"
+                  src={screenSeriesDetail}
+                  alt="Series detail screen"
                   className="w-36 sm:w-44 md:w-52 opacity-50 blur-[1px] scale-90 rotate-[8deg]"
                 />
               </motion.div>
