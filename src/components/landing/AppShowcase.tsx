@@ -77,7 +77,7 @@ const AppShowcase = () => {
               <span className="text-gradient-primary">Reimagined</span>
             </h2>
             <p className="text-muted-foreground mb-10 max-w-lg leading-relaxed">
-              CineTrack isn't just another streaming app. It's a beautifully designed experience 
+              StreamBox isn't just another streaming app. It's a beautifully designed experience 
               that combines streaming, discovery, and personal insights into one seamless platform.
             </p>
 
