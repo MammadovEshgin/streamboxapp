@@ -1,4 +1,4 @@
-import { Film } from "lucide-react";
+import { Clapperboard } from "lucide-react";
 
 const Footer = () => (
   <footer className="border-t border-border py-10">
