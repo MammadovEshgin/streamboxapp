@@ -7,6 +7,8 @@ import screenSeries from "@/assets/screen-series.jpeg";
 import screenStats from "@/assets/screen-stats.jpeg";
 import screenActors from "@/assets/screen-actors.jpeg";
 import screenPersona from "@/assets/screen-persona.jpeg";
+import screenGenreRadar from "@/assets/screen-genre-radar.jpeg";
+import screenTasteProfile from "@/assets/screen-taste-profile.jpeg";
 import screenMovieDetail from "@/assets/screen-movie-detail.jpeg";
 import screenSeriesDetail from "@/assets/screen-series-detail.jpeg";
 import screenActorDetail from "@/assets/screen-actor-detail.jpeg";
