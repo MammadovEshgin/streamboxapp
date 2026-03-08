@@ -1,4 +1,4 @@
-import { motion, useInView } from "framer-motion";
+import { motion, useInView, AnimatePresence } from "framer-motion";
 import { useRef, useState } from "react";
 import PhoneMockup from "./PhoneMockup";
 import screenDiscover from "@/assets/screen-discover.jpeg";
@@ -12,27 +12,42 @@ import screenSeriesDetail from "@/assets/screen-series-detail.jpeg";
 import screenActorDetail from "@/assets/screen-actor-detail.jpeg";
 import screenEpisodes from "@/assets/screen-episodes.jpeg";
 
-const screens = [
-  { src: screenDiscover, label: "Discover", desc: "Find your next binge" },
-  { src: screenMovies, label: "Movies", desc: "Browse the full catalog" },
-  { src: screenMovieDetail, label: "Movie Detail", desc: "Rich info at a glance" },
-  { src: screenSeries, label: "Series", desc: "Follow every show" },
-  { src: screenSeriesDetail, label: "Series Detail", desc: "Seasons, ratings & more" },
-  { src: screenEpisodes, label: "Episodes", desc: "Track every episode" },
-  { src: screenActors, label: "Top Actors", desc: "Your star leaderboard" },
-  { src: screenActorDetail, label: "Actor Profile", desc: "Full filmography & bio" },
-  { src: screenStats, label: "Stats", desc: "Deep viewing insights" },
-  { src: screenPersona, label: "Persona", desc: "Your viewer DNA" },
+type ScreenTab = {
+  label: string;
+  desc: string;
+} & (
+  | { type: "single"; src: string }
+  | { type: "multi"; screens: { src: string; label: string }[] }
+);
+
+const tabs: ScreenTab[] = [
+  { type: "single", src: screenDiscover, label: "Discover", desc: "Find your next binge" },
+  { type: "single", src: screenMovies, label: "Movies", desc: "Browse the full catalog" },
+  { type: "single", src: screenMovieDetail, label: "Movie Detail", desc: "Rich info at a glance" },
+  { type: "single", src: screenSeries, label: "Series", desc: "Follow every show" },
+  { type: "single", src: screenSeriesDetail, label: "Series Detail", desc: "Seasons, ratings & more" },
+  { type: "single", src: screenEpisodes, label: "Episodes", desc: "Track every episode" },
+  { type: "single", src: screenActorDetail, label: "Actor Profile", desc: "Full filmography & bio" },
+  {
+    type: "multi",
+    label: "Stats",
+    desc: "Deep viewing insights & your viewer DNA",
+    screens: [
+      { src: screenStats, label: "Stats" },
+      { src: screenActors, label: "Top Actors" },
+      { src: screenPersona, label: "Persona" },
+    ],
+  },
 ];
 
 const ScreenshotsSection = () => {
   const [activeIndex, setActiveIndex] = useState(0);
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-60px" });
+  const activeTab = tabs[activeIndex];
 
   return (
     <section id="app-preview" className="py-24 md:py-32 relative overflow-hidden">
-      {/* Ambient glow */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] rounded-full bg-primary/5 blur-[150px] pointer-events-none" />
 
       <div className="container relative" ref={ref}>
@@ -40,7 +55,7 @@ const ScreenshotsSection = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
-          className="text-center mb-12"
+          className="text-center mb-16"
         >
           <span className="text-xs font-semibold uppercase tracking-widest text-primary mb-3 block">
             Inside the App
@@ -53,52 +68,80 @@ const ScreenshotsSection = () => {
           </p>
         </motion.div>
 
-        {/* Tab pills */}
         <motion.div
           initial={{ opacity: 0, y: 10 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.5, delay: 0.2 }}
-          className="flex flex-wrap justify-center gap-2 mb-12"
+          className="flex flex-col md:flex-row gap-8 md:gap-12 items-start"
         >
-          {screens.map((screen, i) => (
-            <button
-              key={screen.label}
-              onClick={() => setActiveIndex(i)}
-              className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 ${
-                activeIndex === i
-                  ? "bg-primary text-primary-foreground shadow-lg shadow-primary/20"
-                  : "bg-secondary text-muted-foreground hover:text-foreground"
-              }`}
-            >
-              {screen.label}
-            </button>
-          ))}
-        </motion.div>
+          {/* Vertical tab buttons - left side */}
+          <div className="flex md:flex-col gap-2 md:gap-1.5 w-full md:w-52 shrink-0 flex-wrap md:flex-nowrap md:sticky md:top-32">
+            {tabs.map((tab, i) => (
+              <button
+                key={tab.label}
+                onClick={() => setActiveIndex(i)}
+                className={`relative px-4 py-3 text-left text-sm font-medium transition-all duration-300 rounded-[3px] ${
+                  activeIndex === i
+                    ? "bg-primary text-primary-foreground shadow-lg shadow-primary/20"
+                    : "bg-secondary text-muted-foreground hover:text-foreground hover:bg-secondary/80"
+                }`}
+              >
+                <span className="relative z-10">{tab.label}</span>
+              </button>
+            ))}
+          </div>
 
-        {/* Phone display */}
-        <div className="flex justify-center">
-          <motion.div
-            key={activeIndex}
-            initial={{ opacity: 0, scale: 0.95, y: 20 }}
-            animate={{ opacity: 1, scale: 1, y: 0 }}
-            transition={{ duration: 0.4, ease: "easeOut" }}
-            className="relative"
-          >
-            <PhoneMockup
-              src={screens[activeIndex].src}
-              alt={screens[activeIndex].label}
-              className="w-60 sm:w-72 md:w-80 phone-shadow"
-            />
-            <div className="mt-6 text-center">
-              <p className="font-display font-semibold text-foreground text-lg">
-                {screens[activeIndex].label}
-              </p>
-              <p className="text-sm text-muted-foreground">
-                {screens[activeIndex].desc}
-              </p>
-            </div>
-          </motion.div>
-        </div>
+          {/* Content area */}
+          <div className="flex-1 flex justify-center min-h-[500px]">
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={activeIndex}
+                initial={{ opacity: 0, x: 30 }}
+                animate={{ opacity: 1, x: 0 }}
+                exit={{ opacity: 0, x: -20 }}
+                transition={{ duration: 0.35, ease: "easeOut" }}
+                className="flex flex-col items-center"
+              >
+                {activeTab.type === "single" ? (
+                  <PhoneMockup
+                    src={activeTab.src}
+                    alt={activeTab.label}
+                    className="w-60 sm:w-72 md:w-80 phone-shadow"
+                  />
+                ) : (
+                  <div className="flex flex-wrap justify-center gap-6">
+                    {activeTab.screens.map((screen, i) => (
+                      <motion.div
+                        key={screen.label}
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.4, delay: i * 0.1 }}
+                        className="flex flex-col items-center"
+                      >
+                        <PhoneMockup
+                          src={screen.src}
+                          alt={screen.label}
+                          className="w-48 sm:w-56 md:w-64 phone-shadow"
+                        />
+                        <p className="mt-3 text-sm font-medium text-muted-foreground">
+                          {screen.label}
+                        </p>
+                      </motion.div>
+                    ))}
+                  </div>
+                )}
+                <div className="mt-6 text-center">
+                  <p className="font-display font-semibold text-foreground text-lg">
+                    {activeTab.label}
+                  </p>
+                  <p className="text-sm text-muted-foreground">
+                    {activeTab.desc}
+                  </p>
+                </div>
+              </motion.div>
+            </AnimatePresence>
+          </div>
+        </motion.div>
       </div>
     </section>
   );
