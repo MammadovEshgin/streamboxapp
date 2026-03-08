@@ -113,7 +113,7 @@ const ScreenshotsSection = () => {
                   className="w-52 sm:w-60 md:w-64 phone-shadow"
                 />
               ) : (
-                <div className="flex flex-wrap justify-center gap-3">
+                <div className="flex flex-wrap justify-center gap-4">
                   {activeTab.screens.map((screen, i) => (
                     <motion.div
                       key={screen.label}
@@ -125,7 +125,7 @@ const ScreenshotsSection = () => {
                       <PhoneMockup
                         src={screen.src}
                         alt={screen.label}
-                        className="w-28 sm:w-32 md:w-36 phone-shadow"
+                        className="w-52 sm:w-60 md:w-64 phone-shadow"
                       />
                       <p className="mt-2 text-xs font-medium text-muted-foreground">
                         {screen.label}
