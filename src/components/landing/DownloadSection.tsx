@@ -20,7 +20,6 @@ const DownloadSection = () => {
 
   return (
     <section id="download" className="py-24 md:py-32 relative overflow-hidden">
-      {/* Ambient */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] rounded-full bg-primary/8 blur-[150px] pointer-events-none" />
 
       <div className="container relative" ref={ref}>
@@ -35,14 +34,13 @@ const DownloadSection = () => {
           </div>
 
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-display font-bold text-gradient-white mb-4">
-            Start Tracking Today
+            Start Streaming Today
           </h2>
           <p className="text-muted-foreground mb-10 max-w-lg mx-auto">
-            Download CineTrack and join thousands of movie lovers who never lose track of what they watch.
+            Download CineTrack and unlock unlimited movies and series — right at your fingertips.
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            {/* iOS Button */}
             <motion.a
               href="#"
               whileHover={{ scale: 1.03 }}
@@ -62,7 +60,6 @@ const DownloadSection = () => {
               </div>
             </motion.a>
 
-            {/* Android Button */}
             <motion.a
               href="#"
               whileHover={{ scale: 1.03 }}

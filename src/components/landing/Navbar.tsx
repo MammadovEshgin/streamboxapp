@@ -2,13 +2,18 @@ import { motion } from "framer-motion";
 import { Film, Menu, X } from "lucide-react";
 import { useState } from "react";
 
-const navLinks = ["Features", "Screenshots", "Stats", "Download"];
+const navLinks = ["Features", "App Preview", "Download"];
 
 const Navbar = () => {
   const [mobileOpen, setMobileOpen] = useState(false);
 
-  const scrollTo = (id: string) => {
-    document.getElementById(id.toLowerCase())?.scrollIntoView({ behavior: "smooth" });
+  const scrollTo = (label: string) => {
+    const idMap: Record<string, string> = {
+      "Features": "features",
+      "App Preview": "app-preview",
+      "Download": "download",
+    };
+    document.getElementById(idMap[label] || label.toLowerCase())?.scrollIntoView({ behavior: "smooth" });
     setMobileOpen(false);
   };
 
@@ -39,12 +44,6 @@ const Navbar = () => {
               {link}
             </button>
           ))}
-          <button
-            onClick={() => scrollTo("download")}
-            className="px-5 py-2 rounded-full bg-primary text-primary-foreground text-sm font-semibold hover:brightness-110 transition-all duration-200"
-          >
-            Get the App
-          </button>
         </div>
 
         <button
@@ -71,12 +70,6 @@ const Navbar = () => {
                 {link}
               </button>
             ))}
-            <button
-              onClick={() => scrollTo("download")}
-              className="mt-2 px-5 py-2.5 rounded-full bg-primary text-primary-foreground text-sm font-semibold w-full"
-            >
-              Get the App
-            </button>
           </div>
         </motion.div>
       )}
