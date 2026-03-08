@@ -7,10 +7,10 @@ const Footer = () => (
         <div className="w-7 h-7 rounded-md bg-primary flex items-center justify-center">
           <Film className="w-4 h-4 text-primary-foreground" />
         </div>
-        <span className="font-display font-semibold text-sm text-foreground">CineTrack</span>
+        <span className="font-display font-semibold text-sm text-foreground">StreamBox</span>
       </div>
       <p className="text-xs text-muted-foreground">
-        © 2026 CineTrack. All rights reserved.
+        © 2026 StreamBox. All rights reserved.
       </p>
     </div>
   </footer>

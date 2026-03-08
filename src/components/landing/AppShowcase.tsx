@@ -70,14 +70,14 @@ const AppShowcase = () => {
             transition={{ duration: 0.7, delay: 0.15 }}
           >
             <span className="text-xs font-semibold uppercase tracking-widest text-primary mb-3 block">
-              Why CineTrack
+              Why StreamBox
             </span>
             <h2 className="text-3xl md:text-4xl lg:text-5xl font-display font-bold text-gradient-white mb-6">
               Your Entertainment,{" "}
               <span className="text-gradient-primary">Reimagined</span>
             </h2>
             <p className="text-muted-foreground mb-10 max-w-lg leading-relaxed">
-              CineTrack isn't just another streaming app. It's a beautifully designed experience 
+              StreamBox isn't just another streaming app. It's a beautifully designed experience 
               that combines streaming, discovery, and personal insights into one seamless platform.
             </p>
 
