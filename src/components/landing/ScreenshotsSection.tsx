@@ -92,7 +92,7 @@ const ScreenshotsSection = () => {
         </motion.div>
 
         {/* Content area */}
-        <div className="flex justify-center min-h-[500px]">
+        <div className="flex justify-center items-start" style={{ minHeight: "580px" }}>
           <AnimatePresence mode="popLayout">
             <motion.div
               key={safeIndex}
@@ -106,10 +106,10 @@ const ScreenshotsSection = () => {
                 <PhoneMockup
                   src={activeTab.src}
                   alt={activeTab.label}
-                  className="w-60 sm:w-72 md:w-80 phone-shadow"
+                  className="w-52 sm:w-60 md:w-64 phone-shadow"
                 />
               ) : (
-                <div className="flex flex-wrap justify-center gap-6">
+                <div className="flex flex-wrap justify-center gap-4">
                   {activeTab.screens.map((screen, i) => (
                     <motion.div
                       key={screen.label}
@@ -121,9 +121,9 @@ const ScreenshotsSection = () => {
                       <PhoneMockup
                         src={screen.src}
                         alt={screen.label}
-                        className="w-48 sm:w-56 md:w-64 phone-shadow"
+                        className="w-40 sm:w-44 md:w-48 phone-shadow"
                       />
-                      <p className="mt-3 text-sm font-medium text-muted-foreground">
+                      <p className="mt-2 text-xs font-medium text-muted-foreground">
                         {screen.label}
                       </p>
                     </motion.div>
