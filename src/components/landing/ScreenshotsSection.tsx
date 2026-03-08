@@ -56,7 +56,7 @@ const ScreenshotsSection = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
-          className="text-center mb-16"
+          className="text-center mb-12"
         >
           <span className="text-xs font-semibold uppercase tracking-widest text-primary mb-3 block">
             Inside the App
@@ -69,80 +69,78 @@ const ScreenshotsSection = () => {
           </p>
         </motion.div>
 
+        {/* Horizontal tab buttons */}
         <motion.div
           initial={{ opacity: 0, y: 10 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.5, delay: 0.2 }}
-          className="flex flex-col md:flex-row gap-8 md:gap-12 items-start"
+          className="flex flex-wrap justify-center gap-2 mb-12"
         >
-          {/* Vertical tab buttons - left side */}
-          <div className="flex md:flex-col gap-2 md:gap-1.5 w-full md:w-52 shrink-0 flex-wrap md:flex-nowrap md:sticky md:top-32">
-            {tabs.map((tab, i) => (
-              <button
-                key={tab.label}
-                onClick={() => setActiveIndex(i)}
-                className={`relative px-4 py-3 text-left text-sm font-medium transition-all duration-300 rounded-[3px] ${
-                  activeIndex === i
-                    ? "bg-primary text-primary-foreground shadow-lg shadow-primary/20"
-                    : "bg-secondary text-muted-foreground hover:text-foreground hover:bg-secondary/80"
-                }`}
-              >
-                <span className="relative z-10">{tab.label}</span>
-              </button>
-            ))}
-          </div>
-
-          {/* Content area */}
-          <div className="flex-1 flex justify-center min-h-[500px]">
-            <AnimatePresence mode="wait">
-              <motion.div
-                key={activeIndex}
-                initial={{ opacity: 0, x: 30 }}
-                animate={{ opacity: 1, x: 0 }}
-                exit={{ opacity: 0, x: -20 }}
-                transition={{ duration: 0.35, ease: "easeOut" }}
-                className="flex flex-col items-center"
-              >
-                {activeTab.type === "single" ? (
-                  <PhoneMockup
-                    src={activeTab.src}
-                    alt={activeTab.label}
-                    className="w-60 sm:w-72 md:w-80 phone-shadow"
-                  />
-                ) : (
-                  <div className="flex flex-wrap justify-center gap-6">
-                    {activeTab.screens.map((screen, i) => (
-                      <motion.div
-                        key={screen.label}
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.4, delay: i * 0.1 }}
-                        className="flex flex-col items-center"
-                      >
-                        <PhoneMockup
-                          src={screen.src}
-                          alt={screen.label}
-                          className="w-48 sm:w-56 md:w-64 phone-shadow"
-                        />
-                        <p className="mt-3 text-sm font-medium text-muted-foreground">
-                          {screen.label}
-                        </p>
-                      </motion.div>
-                    ))}
-                  </div>
-                )}
-                <div className="mt-6 text-center">
-                  <p className="font-display font-semibold text-foreground text-lg">
-                    {activeTab.label}
-                  </p>
-                  <p className="text-sm text-muted-foreground">
-                    {activeTab.desc}
-                  </p>
-                </div>
-              </motion.div>
-            </AnimatePresence>
-          </div>
+          {tabs.map((tab, i) => (
+            <button
+              key={tab.label}
+              onClick={() => setActiveIndex(i)}
+              className={`relative px-3.5 py-1.5 text-[13px] font-medium transition-all duration-200 rounded-[3px] ${
+                safeIndex === i
+                  ? "bg-primary text-primary-foreground shadow-md shadow-primary/20"
+                  : "bg-secondary text-muted-foreground hover:text-foreground hover:bg-secondary/80"
+              }`}
+            >
+              {tab.label}
+            </button>
+          ))}
         </motion.div>
+
+        {/* Content area */}
+        <div className="flex justify-center min-h-[500px]">
+          <AnimatePresence mode="popLayout">
+            <motion.div
+              key={safeIndex}
+              initial={{ opacity: 0, scale: 0.97 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.97 }}
+              transition={{ duration: 0.25, ease: [0.25, 0.1, 0.25, 1] }}
+              className="flex flex-col items-center"
+            >
+              {activeTab.type === "single" ? (
+                <PhoneMockup
+                  src={activeTab.src}
+                  alt={activeTab.label}
+                  className="w-60 sm:w-72 md:w-80 phone-shadow"
+                />
+              ) : (
+                <div className="flex flex-wrap justify-center gap-6">
+                  {activeTab.screens.map((screen, i) => (
+                    <motion.div
+                      key={screen.label}
+                      initial={{ opacity: 0, y: 15 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 0.3, delay: i * 0.08 }}
+                      className="flex flex-col items-center"
+                    >
+                      <PhoneMockup
+                        src={screen.src}
+                        alt={screen.label}
+                        className="w-48 sm:w-56 md:w-64 phone-shadow"
+                      />
+                      <p className="mt-3 text-sm font-medium text-muted-foreground">
+                        {screen.label}
+                      </p>
+                    </motion.div>
+                  ))}
+                </div>
+              )}
+              <div className="mt-6 text-center">
+                <p className="font-display font-semibold text-foreground text-lg">
+                  {activeTab.label}
+                </p>
+                <p className="text-sm text-muted-foreground">
+                  {activeTab.desc}
+                </p>
+              </div>
+            </motion.div>
+          </AnimatePresence>
+        </div>
       </div>
     </section>
   );

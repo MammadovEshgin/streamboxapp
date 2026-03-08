@@ -52,14 +52,14 @@ const HeroSection = () => {
             <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
               <button
                 onClick={scrollToDownload}
-                className="inline-flex items-center justify-center gap-2.5 px-7 py-3.5 rounded-full bg-primary text-primary-foreground font-semibold text-sm hover:brightness-110 transition-all duration-200 shadow-lg shadow-primary/25"
+                className="inline-flex items-center justify-center gap-2.5 px-7 py-3.5 rounded-[4px] bg-primary text-primary-foreground font-semibold text-sm hover:brightness-110 transition-all duration-200 shadow-lg shadow-primary/25"
               >
                 <Play className="w-4 h-4 fill-current" />
                 Start Watching
               </button>
               <button
                 onClick={() => document.getElementById("features")?.scrollIntoView({ behavior: "smooth" })}
-                className="inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-full border border-border text-foreground font-semibold text-sm hover:bg-secondary/50 transition-all duration-200"
+                className="inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-[4px] border border-border text-foreground font-semibold text-sm hover:bg-secondary/50 transition-all duration-200"
               >
                 Explore Features
               </button>
