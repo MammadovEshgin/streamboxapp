@@ -9,9 +9,14 @@ const Footer = () => (
         </div>
         <span className="font-display font-semibold text-sm text-foreground">StreamBox</span>
       </div>
-      <p className="text-xs text-muted-foreground">
-        © 2026 StreamBox. All rights reserved.
-      </p>
+      <div className="flex flex-col items-center md:items-end gap-1">
+        <p className="text-xs text-muted-foreground">
+          © 2026 StreamBox. All rights reserved.
+        </p>
+        <p className="text-xs text-muted-foreground">
+          Made by <span className="text-foreground font-medium">Eshgin</span>
+        </p>
+      </div>
     </div>
   </footer>
 );
