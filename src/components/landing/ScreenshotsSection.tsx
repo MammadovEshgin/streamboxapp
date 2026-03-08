@@ -7,14 +7,22 @@ import screenSeries from "@/assets/screen-series.jpeg";
 import screenStats from "@/assets/screen-stats.jpeg";
 import screenActors from "@/assets/screen-actors.jpeg";
 import screenPersona from "@/assets/screen-persona.jpeg";
+import screenMovieDetail from "@/assets/screen-movie-detail.jpeg";
+import screenSeriesDetail from "@/assets/screen-series-detail.jpeg";
+import screenActorDetail from "@/assets/screen-actor-detail.jpeg";
+import screenEpisodes from "@/assets/screen-episodes.jpeg";
 
 const screens = [
-  { src: screenDiscover, label: "Discover", desc: "Find your next watch" },
-  { src: screenMovies, label: "Movies", desc: "Track your film journey" },
-  { src: screenSeries, label: "Series", desc: "Follow every episode" },
+  { src: screenDiscover, label: "Discover", desc: "Find your next binge" },
+  { src: screenMovies, label: "Movies", desc: "Browse the full catalog" },
+  { src: screenMovieDetail, label: "Movie Detail", desc: "Rich info at a glance" },
+  { src: screenSeries, label: "Series", desc: "Follow every show" },
+  { src: screenSeriesDetail, label: "Series Detail", desc: "Seasons, ratings & more" },
+  { src: screenEpisodes, label: "Episodes", desc: "Track every episode" },
+  { src: screenActors, label: "Top Actors", desc: "Your star leaderboard" },
+  { src: screenActorDetail, label: "Actor Profile", desc: "Full filmography & bio" },
   { src: screenStats, label: "Stats", desc: "Deep viewing insights" },
-  { src: screenActors, label: "Actors", desc: "Your star leaderboard" },
-  { src: screenPersona, label: "Persona", desc: "Unlock your viewer DNA" },
+  { src: screenPersona, label: "Persona", desc: "Your viewer DNA" },
 ];
 
 const ScreenshotsSection = () => {
@@ -23,7 +31,7 @@ const ScreenshotsSection = () => {
   const isInView = useInView(ref, { once: true, margin: "-60px" });
 
   return (
-    <section id="screenshots" className="py-24 md:py-32 relative overflow-hidden">
+    <section id="app-preview" className="py-24 md:py-32 relative overflow-hidden">
       {/* Ambient glow */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] rounded-full bg-primary/5 blur-[150px] pointer-events-none" />
 
@@ -35,7 +43,7 @@ const ScreenshotsSection = () => {
           className="text-center mb-12"
         >
           <span className="text-xs font-semibold uppercase tracking-widest text-primary mb-3 block">
-            Screenshots
+            Inside the App
           </span>
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-display font-bold text-gradient-white mb-4">
             Beautifully Crafted

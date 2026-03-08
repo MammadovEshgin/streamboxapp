@@ -1,38 +1,38 @@
 import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
 import { useRef } from "react";
-import { Compass, BarChart3, Users, TrendingUp, Film, Tv } from "lucide-react";
+import { Compass, BarChart3, Users, Play, Film, Tv } from "lucide-react";
 
 const features = [
   {
     icon: Compass,
     title: "Discover",
-    desc: "Find trending movies and series with personalized recommendations powered by your taste.",
+    desc: "Explore trending movies and series with personalized recommendations tailored to your taste.",
+  },
+  {
+    icon: Play,
+    title: "Stream Instantly",
+    desc: "Watch your favorite movies and series anytime, anywhere — no waiting, just press play.",
   },
   {
     icon: Film,
-    title: "Track Movies",
-    desc: "Log every movie you watch. See your movie of the day and browse IMDb's Top 250.",
+    title: "Movie Library",
+    desc: "Browse an ever-growing catalog of movies with rich details, trailers, ratings, and cast info.",
   },
   {
     icon: Tv,
-    title: "Track Series",
-    desc: "Keep up with your favorite shows, mark episodes, and never miss a premiere.",
-  },
-  {
-    icon: BarChart3,
-    title: "Deep Stats",
-    desc: "Watch activity heatmaps, genre breakdowns, decade analysis, and rating distributions.",
+    title: "Series & Episodes",
+    desc: "Track seasons, mark episodes, and never miss a premiere of your favorite shows.",
   },
   {
     icon: Users,
-    title: "Top Actors",
-    desc: "See which actors dominate your watchlist with ranked leaderboards and appearance counts.",
+    title: "Actor Profiles",
+    desc: "Dive deep into actor bios, filmographies, and discover more content from stars you love.",
   },
   {
-    icon: TrendingUp,
-    title: "Taste Evolution",
-    desc: "Track how your genre preferences evolve month by month with beautiful visualizations.",
+    icon: BarChart3,
+    title: "Watch Stats",
+    desc: "Get detailed insights — genre breakdowns, watch heatmaps, and taste evolution over time.",
   },
 ];
 
@@ -82,7 +82,7 @@ const FeaturesSection = () => {
             Everything You Need
           </h2>
           <p className="text-muted-foreground max-w-md mx-auto">
-            A complete toolkit to discover, track, and understand your entertainment journey.
+            Stream, discover, and track — your complete entertainment experience in one app.
           </p>
         </motion.div>
 
