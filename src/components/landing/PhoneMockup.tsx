@@ -13,7 +13,7 @@ const PhoneMockup = ({ src, alt, className = "" }: PhoneMockupProps) => {
         <img
           src={src}
           alt={alt}
-          className="w-full h-[480px] object-cover object-top block"
+          className="w-full h-auto block"
           loading="lazy"
         />
       </div>
