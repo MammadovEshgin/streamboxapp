@@ -37,7 +37,7 @@ const DownloadSection = () => {
             Start Streaming Today
           </h2>
           <p className="text-muted-foreground mb-10 max-w-lg mx-auto">
-            Download CineTrack and unlock unlimited movies and series — right at your fingertips.
+            Download StreamBox and unlock unlimited movies and series — right at your fingertips.
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
