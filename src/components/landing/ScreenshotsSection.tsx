@@ -44,7 +44,8 @@ const ScreenshotsSection = () => {
   const [activeIndex, setActiveIndex] = useState(0);
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-60px" });
-  const activeTab = tabs[activeIndex];
+  const safeIndex = activeIndex < tabs.length ? activeIndex : 0;
+  const activeTab = tabs[safeIndex];
 
   return (
     <section id="app-preview" className="py-24 md:py-32 relative overflow-hidden">
