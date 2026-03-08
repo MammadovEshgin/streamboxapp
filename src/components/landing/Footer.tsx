@@ -12,8 +12,8 @@ const Footer = () => (
       <p className="text-xs italic text-muted-foreground/70 font-display tracking-wide">
         "What is <span className="text-primary font-medium">Earth</span> without <span className="text-primary font-medium">art</span>? Just a rock."
       </p>
-      <div className="flex flex-col items-center md:items-end gap-0.5">
-        <p className="text-xs text-muted-foreground">© 2026 StreamBox. All rights reserved.</p>
+      <div className="flex items-center gap-1">
+        <p className="text-xs text-muted-foreground">Made by <span className="text-foreground font-medium">Eshgin</span></p>
         <p className="text-xs text-muted-foreground">Made by <span className="text-foreground font-medium">Eshgin</span></p>
       </div>
     </div>
