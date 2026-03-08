@@ -70,7 +70,7 @@ const AppShowcase = () => {
             transition={{ duration: 0.7, delay: 0.15 }}
           >
             <span className="text-xs font-semibold uppercase tracking-widest text-primary mb-3 block">
-              Why CineTrack
+              Why StreamBox
             </span>
             <h2 className="text-3xl md:text-4xl lg:text-5xl font-display font-bold text-gradient-white mb-6">
               Your Entertainment,{" "}
