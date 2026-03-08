@@ -96,7 +96,7 @@ const ScreenshotsSection = () => {
         </motion.div>
 
         {/* Content area */}
-        <div className="flex justify-center items-start" style={{ minHeight: "580px" }}>
+        <div className="flex justify-center items-start min-h-[400px] md:min-h-[580px]">
           <AnimatePresence mode="popLayout">
             <motion.div
               key={safeIndex}
@@ -104,7 +104,7 @@ const ScreenshotsSection = () => {
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0, scale: 0.97 }}
               transition={{ duration: 0.25, ease: [0.25, 0.1, 0.25, 1] }}
-              className="flex flex-col items-center"
+              className="flex flex-col items-center w-full"
             >
               {activeTab.type === "single" ? (
                 <PhoneMockup
@@ -113,25 +113,27 @@ const ScreenshotsSection = () => {
                   className="w-52 sm:w-60 md:w-64 phone-shadow"
                 />
               ) : (
-                <div className="flex flex-wrap justify-center gap-4">
-                  {activeTab.screens.map((screen, i) => (
-                    <motion.div
-                      key={screen.label}
-                      initial={{ opacity: 0, y: 15 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ duration: 0.3, delay: i * 0.08 }}
-                      className="flex flex-col items-center"
-                    >
-                      <PhoneMockup
-                        src={screen.src}
-                        alt={screen.label}
-                        className="w-52 sm:w-60 md:w-64 phone-shadow"
-                      />
-                      <p className="mt-2 text-xs font-medium text-muted-foreground">
-                        {screen.label}
-                      </p>
-                    </motion.div>
-                  ))}
+                <div className="w-full overflow-x-auto pb-4 scrollbar-hide">
+                  <div className="flex justify-start md:justify-center gap-4 px-4 md:px-0 w-max md:w-full mx-auto">
+                    {activeTab.screens.map((screen, i) => (
+                      <motion.div
+                        key={screen.label}
+                        initial={{ opacity: 0, y: 15 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.3, delay: i * 0.08 }}
+                        className="flex flex-col items-center flex-shrink-0"
+                      >
+                        <PhoneMockup
+                          src={screen.src}
+                          alt={screen.label}
+                          className="w-44 sm:w-48 md:w-52 phone-shadow"
+                        />
+                        <p className="mt-2 text-xs font-medium text-muted-foreground">
+                          {screen.label}
+                        </p>
+                      </motion.div>
+                    ))}
+                  </div>
                 </div>
               )}
               <div className="mt-6 text-center">
