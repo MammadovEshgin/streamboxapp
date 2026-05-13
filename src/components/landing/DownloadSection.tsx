@@ -36,7 +36,8 @@ const DownloadSection = () => {
 
           <div className="flex justify-center">
             <motion.a
-              href="#"
+              href="/downloads/streambox.apk"
+              download="streambox.apk"
               whileHover={{ scale: 1.03 }}
               whileTap={{ scale: 0.97 }}
               className="inline-flex items-center gap-4 px-7 py-4 rounded-2xl bg-gradient-card border-gradient hover:border-primary/40 transition-all duration-300 group"
