@@ -36,8 +36,8 @@ const DownloadSection = () => {
 
           <div className="flex justify-center">
             <motion.a
-              href="/downloads/streambox.apk"
-              download="streambox.apk"
+              href="https://github.com/MammadovEshgin/streamboxapp/releases/download/v1.0.0/StreamBox.apk"
+              download="StreamBox.apk"
               whileHover={{ scale: 1.03 }}
               whileTap={{ scale: 0.97 }}
               className="inline-flex items-center gap-4 px-7 py-4 rounded-2xl bg-gradient-card border-gradient hover:border-primary/40 transition-all duration-300 group"
@@ -56,7 +56,10 @@ const DownloadSection = () => {
             </motion.a>
           </div>
 
-          <p className="mt-6 text-xs text-muted-foreground">
+          <p className="mt-6 text-[10px] font-mono text-muted-foreground/60 break-all px-4">
+            SHA256: 6de38704dacf761beaebfb3408fd480ae36f9c4c1aea7ef2e379da78f8216732
+          </p>
+          <p className="mt-2 text-xs text-muted-foreground">
             Direct APK download • iOS coming later
           </p>
         </motion.div>
