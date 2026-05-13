@@ -1,9 +1,7 @@
 import { motion } from "framer-motion";
-import { Play, Star } from "lucide-react";
+import { Play, Smartphone, Film, Sparkles, Tv2 } from "lucide-react";
 import PhoneMockup from "./PhoneMockup";
-import screenDiscover from "@/assets/screen-discover.jpeg";
-import screenMovieDetail from "@/assets/screen-movie-detail.jpeg";
-import screenSeriesDetail from "@/assets/screen-series-detail.jpeg";
+import { screens } from "@/assets/screens/manifest";
 
 const HeroSection = () => {
   const scrollToDownload = () => {
@@ -11,18 +9,18 @@ const HeroSection = () => {
   };
 
   return (
-    <section className="relative min-h-screen bg-gradient-hero overflow-hidden noise-overlay">
+    <section className="relative min-h-[600px] md:min-h-[700px] lg:min-h-[800px] xl:min-h-screen flex items-center bg-gradient-hero overflow-hidden noise-overlay">
       {/* Ambient glow */}
       <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[600px] h-[600px] rounded-full bg-primary/5 blur-[120px] animate-pulse-glow pointer-events-none" />
 
-      <div className="container relative pt-32 md:pt-40 pb-20">
-        <div className="grid lg:grid-cols-2 gap-12 lg:gap-8 items-center">
+      <div className="container relative pt-32 pb-12 md:pt-36 md:pb-16 lg:pt-40 lg:pb-20">
+        <div className="grid md:grid-cols-2 gap-10 md:gap-8 items-center">
           {/* Left content */}
           <motion.div
             initial={{ opacity: 0, x: -40 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, ease: "easeOut" }}
-            className="text-center lg:text-left"
+            className="text-center md:text-left"
           >
             <motion.div
               initial={{ opacity: 0, y: 10 }}
@@ -30,9 +28,9 @@ const HeroSection = () => {
               transition={{ delay: 0.2 }}
               className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-border bg-secondary/50 mb-6"
             >
-              <Star className="w-3.5 h-3.5 text-primary fill-primary" />
+              <Smartphone className="w-3.5 h-3.5 text-primary" />
               <span className="text-xs font-medium text-muted-foreground tracking-wide uppercase">
-                Stream Anywhere
+                Now on Android
               </span>
             </motion.div>
 
@@ -44,12 +42,12 @@ const HeroSection = () => {
               <span className="text-gradient-primary">All in One App.</span>
             </h1>
 
-            <p className="text-base md:text-lg text-muted-foreground max-w-lg mx-auto lg:mx-0 mb-8 leading-relaxed">
-              Your ultimate streaming companion — discover, watch, and track thousands of movies and series 
-              with personalized recommendations and detailed insights.
+            <p className="text-base md:text-lg text-muted-foreground max-w-lg mx-auto md:mx-0 mb-8 leading-relaxed">
+              Discover what to watch next, track every episode, and see your taste come into focus —
+              all from a single Android app.
             </p>
 
-            <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+            <div className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
               <button
                 onClick={scrollToDownload}
                 className="inline-flex items-center justify-center gap-2.5 px-7 py-3.5 rounded-[4px] bg-primary text-primary-foreground font-semibold text-sm hover:brightness-110 transition-all duration-200 shadow-lg shadow-primary/25"
@@ -65,33 +63,25 @@ const HeroSection = () => {
               </button>
             </div>
 
-            {/* Social proof */}
             <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
+              initial={{ opacity: 0, y: 8 }}
+              animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.8 }}
-              className="mt-10 flex items-center gap-6 justify-center lg:justify-start"
+              className="mt-10 flex flex-wrap items-center gap-2.5 justify-center md:justify-start"
             >
-              <div className="flex -space-x-2">
-                {[1, 2, 3, 4].map((i) => (
-                  <div
-                    key={i}
-                    className="w-8 h-8 rounded-full border-2 border-background bg-secondary"
-                    style={{
-                      background: `hsl(${24 + i * 30} 40% ${25 + i * 5}%)`,
-                    }}
-                  />
-                ))}
-              </div>
-              <div className="text-left">
-                <p className="text-sm font-semibold text-foreground">50K+ Streamers</p>
-                <div className="flex items-center gap-1">
-                  {[1, 2, 3, 4, 5].map((i) => (
-                    <Star key={i} className="w-3 h-3 text-gold fill-gold" />
-                  ))}
-                  <span className="text-xs text-muted-foreground ml-1">4.9 rating</span>
+              {[
+                { icon: Film, label: "Movies & series" },
+                { icon: Tv2, label: "Track every episode" },
+                { icon: Sparkles, label: "Personal insights" },
+              ].map(({ icon: Icon, label }) => (
+                <div
+                  key={label}
+                  className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-secondary/60 border border-border/70"
+                >
+                  <Icon className="w-3.5 h-3.5 text-primary" />
+                  <span className="text-xs font-medium text-muted-foreground">{label}</span>
                 </div>
-              </div>
+              ))}
             </motion.div>
           </motion.div>
 
@@ -110,7 +100,7 @@ const HeroSection = () => {
                 transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
               >
                 <PhoneMockup
-                  src={screenMovieDetail}
+                  sources={screens.movieDetail}
                   alt="Movie detail screen"
                   className="w-36 sm:w-44 md:w-52 opacity-50 blur-[1px] scale-90 rotate-[-8deg]"
                 />
@@ -123,8 +113,9 @@ const HeroSection = () => {
                 transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
               >
                 <PhoneMockup
-                  src={screenDiscover}
+                  sources={screens.discover}
                   alt="Discover screen"
+                  eager
                   className="w-52 sm:w-60 md:w-72 phone-shadow"
                 />
               </motion.div>
@@ -136,7 +127,7 @@ const HeroSection = () => {
                 transition={{ duration: 5.5, repeat: Infinity, ease: "easeInOut", delay: 1 }}
               >
                 <PhoneMockup
-                  src={screenSeriesDetail}
+                  sources={screens.seriesDetailV2}
                   alt="Series detail screen"
                   className="w-36 sm:w-44 md:w-52 opacity-50 blur-[1px] scale-90 rotate-[8deg]"
                 />

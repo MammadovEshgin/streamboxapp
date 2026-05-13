@@ -1,23 +1,27 @@
+import { lazy, Suspense } from "react";
 import Navbar from "@/components/landing/Navbar";
 import HeroSection from "@/components/landing/HeroSection";
-import FeaturesSection from "@/components/landing/FeaturesSection";
-import ScreenshotsSection from "@/components/landing/ScreenshotsSection";
-import AppShowcase from "@/components/landing/AppShowcase";
-import DownloadSection from "@/components/landing/DownloadSection";
 import Footer from "@/components/landing/Footer";
 
-const Index = () => {
-  return (
-    <div className="min-h-screen bg-background">
-      <Navbar />
-      <HeroSection />
+const FeaturesSection = lazy(() => import("@/components/landing/FeaturesSection"));
+const ScreenshotsSection = lazy(() => import("@/components/landing/ScreenshotsSection"));
+const AppShowcase = lazy(() => import("@/components/landing/AppShowcase"));
+const DownloadSection = lazy(() => import("@/components/landing/DownloadSection"));
+
+const SectionFallback = () => <div aria-hidden />;
+
+const Index = () => (
+  <div className="min-h-screen bg-background">
+    <Navbar />
+    <HeroSection />
+    <Suspense fallback={<SectionFallback />}>
       <FeaturesSection />
       <ScreenshotsSection />
       <AppShowcase />
       <DownloadSection />
-      <Footer />
-    </div>
-  );
-};
+    </Suspense>
+    <Footer />
+  </div>
+);
 
 export default Index;

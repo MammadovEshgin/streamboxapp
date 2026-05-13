@@ -2,8 +2,7 @@ import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 import { Play, Heart, Zap } from "lucide-react";
 import PhoneMockup from "./PhoneMockup";
-import screenMovieDetail from "@/assets/screen-movie-detail.jpeg";
-import screenActorDetail from "@/assets/screen-actor-detail.jpeg";
+import { screens } from "@/assets/screens/manifest";
 
 const highlights = [
   {
@@ -44,7 +43,7 @@ const AppShowcase = () => {
                 transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
               >
                 <PhoneMockup
-                  src={screenMovieDetail}
+                  sources={screens.movieDetail}
                   alt="Movie detail"
                   className="w-48 sm:w-56 md:w-64 phone-shadow"
                 />
@@ -55,7 +54,7 @@ const AppShowcase = () => {
                 transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 0.8 }}
               >
                 <PhoneMockup
-                  src={screenActorDetail}
+                  sources={screens.actor}
                   alt="Actor profile"
                   className="w-40 sm:w-48 md:w-52 phone-shadow"
                 />

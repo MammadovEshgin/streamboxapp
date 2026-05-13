@@ -1,11 +1,21 @@
-import { Clapperboard } from "lucide-react";
+import logo from "@/assets/logo.png";
 
 const Footer = () => (
   <footer className="border-t border-border py-8">
     <div className="container flex flex-col md:flex-row items-center justify-between gap-4">
       <div className="flex items-center gap-2">
-        <div className="w-7 h-7 rounded-[4px] bg-primary flex items-center justify-center">
-          <Clapperboard className="w-4 h-4 text-primary-foreground" />
+        <div className="relative w-7 h-7 flex items-center justify-center">
+          <div
+            aria-hidden
+            className="absolute inset-0 rounded-full bg-primary/40 blur-md"
+          />
+          <img
+            src={logo}
+            alt="StreamBox logo"
+            className="relative w-7 h-7 object-contain"
+            width={28}
+            height={28}
+          />
         </div>
         <span className="font-display font-semibold text-sm text-foreground">StreamBox</span>
       </div>

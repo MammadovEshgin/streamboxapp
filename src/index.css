@@ -1,8 +1,22 @@
-@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap');
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+  }
+}
 
 @layer base {
   :root {
@@ -15,7 +29,7 @@
     --popover: 0 0% 7%;
     --popover-foreground: 0 0% 95%;
 
-    --primary: 24 100% 50%;
+    --primary: 142 76% 45%;
     --primary-foreground: 0 0% 100%;
 
     --secondary: 0 0% 12%;
@@ -24,7 +38,7 @@
     --muted: 0 0% 15%;
     --muted-foreground: 0 0% 55%;
 
-    --accent: 24 100% 50%;
+    --accent: 142 76% 45%;
     --accent-foreground: 0 0% 100%;
 
     --destructive: 0 84.2% 60.2%;
@@ -32,7 +46,7 @@
 
     --border: 0 0% 14%;
     --input: 0 0% 14%;
-    --ring: 24 100% 50%;
+    --ring: 142 76% 45%;
 
     --radius: 0.75rem;
 
@@ -40,12 +54,12 @@
 
     --sidebar-background: 0 0% 5%;
     --sidebar-foreground: 0 0% 95%;
-    --sidebar-primary: 24 100% 50%;
+    --sidebar-primary: 142 76% 45%;
     --sidebar-primary-foreground: 0 0% 100%;
     --sidebar-accent: 0 0% 12%;
     --sidebar-accent-foreground: 0 0% 95%;
     --sidebar-border: 0 0% 14%;
-    --sidebar-ring: 24 100% 50%;
+    --sidebar-ring: 142 76% 45%;
   }
 }
 
@@ -66,7 +80,7 @@
 @layer utilities {
   .text-gradient-primary {
     @apply bg-clip-text text-transparent;
-    background-image: linear-gradient(135deg, hsl(24 100% 55%), hsl(35 100% 55%));
+    background-image: linear-gradient(135deg, hsl(142 76% 50%), hsl(155 76% 50%));
   }
 
   .text-gradient-white {
@@ -83,14 +97,14 @@
   }
 
   .bg-gradient-hero {
-    background: radial-gradient(ellipse at 50% 0%, hsl(24 100% 50% / 0.12) 0%, transparent 60%),
-                radial-gradient(ellipse at 80% 50%, hsl(24 80% 40% / 0.06) 0%, transparent 50%),
+    background: radial-gradient(ellipse at 50% 0%, hsl(142 76% 45% / 0.12) 0%, transparent 60%),
+                radial-gradient(ellipse at 80% 50%, hsl(142 60% 35% / 0.06) 0%, transparent 50%),
                 hsl(0 0% 3%);
   }
 
   .bg-glow-orange {
-    box-shadow: 0 0 80px 20px hsl(24 100% 50% / 0.15),
-                0 0 200px 60px hsl(24 100% 50% / 0.05);
+    box-shadow: 0 0 80px 20px hsl(142 76% 45% / 0.15),
+                0 0 200px 60px hsl(142 76% 45% / 0.05);
   }
 
   .border-gradient {
@@ -99,7 +113,7 @@
 
   .phone-shadow {
     filter: drop-shadow(0 25px 50px hsl(0 0% 0% / 0.6))
-            drop-shadow(0 0 40px hsl(24 100% 50% / 0.15));
+            drop-shadow(0 0 40px hsl(142 76% 45% / 0.15));
   }
 
   .glass-card {
