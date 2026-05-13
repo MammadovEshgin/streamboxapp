@@ -66,7 +66,7 @@ const FeaturesSection = () => {
   const isInView = useInView(headingRef, { once: true, margin: "-60px" });
 
   return (
-    <section id="features" className="py-24 md:py-32 relative">
+    <section id="features" className="py-12 md:py-16 lg:py-20 relative">
       <div className="container">
         <motion.div
           ref={headingRef}

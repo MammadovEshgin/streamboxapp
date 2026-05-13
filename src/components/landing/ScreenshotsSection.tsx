@@ -1,45 +1,108 @@
 import { motion, useInView, AnimatePresence } from "framer-motion";
 import { useRef, useState } from "react";
+import { Check } from "lucide-react";
 import PhoneMockup from "./PhoneMockup";
-import screenDiscover from "@/assets/screen-discover.jpeg";
-import screenMovies from "@/assets/screen-movies.jpeg";
-import screenSeries from "@/assets/screen-series.jpeg";
-import screenStats from "@/assets/screen-stats.jpeg";
-import screenActors from "@/assets/screen-actors.jpeg";
-import screenPersona from "@/assets/screen-persona.jpeg";
-import screenGenreRadar from "@/assets/screen-genre-radar.jpeg";
-import screenTasteProfile from "@/assets/screen-taste-profile.jpeg";
-import screenMovieDetail from "@/assets/screen-movie-detail.jpeg";
-import screenSeriesDetail from "@/assets/screen-series-detail.jpeg";
-import screenActorDetail from "@/assets/screen-actor-detail.jpeg";
-import screenEpisodes from "@/assets/screen-episodes.jpeg";
+import ScreenshotCarousel from "./ScreenshotCarousel";
+import { screens, type ScreenSources } from "@/assets/screens/manifest";
 
 type ScreenTab = {
   label: string;
-  desc: string;
+  tagline: string;
+  body: string;
+  bullets: string[];
 } & (
-  | { type: "single"; src: string }
-  | { type: "multi"; screens: { src: string; label: string }[] }
+  | { type: "single"; sources: ScreenSources }
+  | { type: "multi"; slides: { sources: ScreenSources; label: string }[] }
 );
 
 const tabs: ScreenTab[] = [
-  { type: "single", src: screenDiscover, label: "Discover", desc: "Find your next binge" },
-  { type: "single", src: screenMovies, label: "Movies", desc: "Browse the full catalog" },
-  { type: "single", src: screenMovieDetail, label: "Movie Detail", desc: "Rich info at a glance" },
-  { type: "single", src: screenSeries, label: "Series", desc: "Follow every show" },
-  { type: "single", src: screenSeriesDetail, label: "Series Detail", desc: "Seasons, ratings & more" },
-  { type: "single", src: screenEpisodes, label: "Episodes", desc: "Track every episode" },
-  { type: "single", src: screenActorDetail, label: "Actor Profile", desc: "Full filmography & bio" },
+  {
+    type: "single",
+    sources: screens.discover,
+    label: "Discover",
+    tagline: "Find your next binge.",
+    body: "A handpicked feed that adapts to your taste. No infinite scroll — just the right thing, right now.",
+    bullets: ["Trending today", "Hidden gems for your mood", "Personalized picks"],
+  },
+  {
+    type: "single",
+    sources: screens.movies,
+    label: "Movies",
+    tagline: "The full catalog, at a glance.",
+    body: "Browse thousands of films sorted by genre, decade, and director. Fast filters, gorgeous posters.",
+    bullets: ["50K+ titles", "Genre & decade filters", "Smart sort by rating"],
+  },
+  {
+    type: "single",
+    sources: screens.movieDetail,
+    label: "Movie Detail",
+    tagline: "Everything you need to decide.",
+    body: "Cast, crew, synopsis, ratings, and where to watch — all on one tap. No tab-hopping.",
+    bullets: ["Full cast & crew", "Aggregated ratings", "Where-to-watch links"],
+  },
+  {
+    type: "single",
+    sources: screens.series,
+    label: "Series",
+    tagline: "Every show worth following.",
+    body: "From cult favorites to the latest premieres, organized so you'll never wonder what to watch next.",
+    bullets: ["Currently airing", "Recently completed", "Worth a re-watch"],
+  },
+  {
+    type: "multi",
+    label: "Series Detail",
+    tagline: "Two ways to dig into a show.",
+    body: "We iterated on this screen until it felt right. Swipe between the two layouts — each surfaces seasons, ratings, and cast differently.",
+    bullets: ["Season-by-season episodes", "Cast & character art", "Track what you've seen"],
+    slides: [
+      { sources: screens.seriesDetailV1, label: "Layout v1" },
+      { sources: screens.seriesDetailV2, label: "Layout v2" },
+    ],
+  },
+  {
+    type: "single",
+    sources: screens.journeys,
+    label: "Journeys",
+    tagline: "Cinematic journeys, curated.",
+    body: "Hand-built collections that take you through eras, movements, and filmmaker careers — one film at a time.",
+    bullets: ["Editorial collections", "Themed deep-dives", "Save journeys for later"],
+  },
+  {
+    type: "single",
+    sources: screens.franchise,
+    label: "Franchise",
+    tagline: "Every chapter, in order.",
+    body: "Connected universes laid out cleanly. Watch in release order or chronologically — your call.",
+    bullets: ["Release & chronological order", "Spin-offs surfaced", "Progress tracked"],
+  },
+  {
+    type: "single",
+    sources: screens.actor,
+    label: "Actor Profile",
+    tagline: "Filmographies, done right.",
+    body: "Dig into any actor's full body of work, sorted by role, decade, or rating. Discover the films you've missed.",
+    bullets: ["Full filmography", "Best-rated roles", "Frequent collaborators"],
+  },
+  {
+    type: "single",
+    sources: screens.profile,
+    label: "Profile",
+    tagline: "Your taste, at a glance.",
+    body: "Your watched list, your favorites, your stats — all in one calm place. No vanity metrics.",
+    bullets: ["Watched & to-watch", "Favorites & lists", "Personal milestones"],
+  },
   {
     type: "multi",
     label: "Stats",
-    desc: "Deep viewing insights & your viewer DNA",
-    screens: [
-      { src: screenStats, label: "Stats" },
-      { src: screenGenreRadar, label: "Genres" },
-      { src: screenActors, label: "Top Actors" },
-      { src: screenTasteProfile, label: "Taste Profile" },
-      { src: screenPersona, label: "Persona" },
+    tagline: "Five views into your viewer DNA.",
+    body: "Quietly logs what you watch, then turns it into something beautiful. Five different lenses on the same data — pick your favorite.",
+    bullets: ["Overview & milestones", "Genre & taste radar", "Top actors & directors"],
+    slides: [
+      { sources: screens.stats1, label: "Overview" },
+      { sources: screens.stats2, label: "Genres" },
+      { sources: screens.stats3, label: "Top Actors" },
+      { sources: screens.stats4, label: "Taste Profile" },
+      { sources: screens.stats5, label: "Persona" },
     ],
   },
 ];
@@ -50,6 +113,7 @@ const ScreenshotsSection = () => {
   const isInView = useInView(ref, { once: true, margin: "-60px" });
   const safeIndex = activeIndex < tabs.length ? activeIndex : 0;
   const activeTab = tabs[safeIndex];
+  const tabNumber = String(safeIndex + 1).padStart(2, "0");
 
   return (
     <section id="app-preview" className="py-24 md:py-32 relative overflow-hidden">
@@ -73,12 +137,11 @@ const ScreenshotsSection = () => {
           </p>
         </motion.div>
 
-        {/* Horizontal tab buttons */}
         <motion.div
           initial={{ opacity: 0, y: 10 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.5, delay: 0.2 }}
-          className="flex flex-wrap justify-center gap-2 mb-12"
+          className="flex flex-wrap justify-center gap-2 mb-14"
         >
           {tabs.map((tab, i) => (
             <button
@@ -95,54 +158,63 @@ const ScreenshotsSection = () => {
           ))}
         </motion.div>
 
-        {/* Content area */}
-        <div className="flex justify-center items-start min-h-[400px] md:min-h-[580px]">
-          <AnimatePresence mode="popLayout">
+        <div className="min-h-[480px] md:min-h-[600px]">
+          <AnimatePresence mode="wait">
             <motion.div
               key={safeIndex}
-              initial={{ opacity: 0, scale: 0.97 }}
-              animate={{ opacity: 1, scale: 1 }}
-              exit={{ opacity: 0, scale: 0.97 }}
-              transition={{ duration: 0.25, ease: [0.25, 0.1, 0.25, 1] }}
-              className="flex flex-col items-center w-full"
+              initial={{ opacity: 0, y: 16 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -8 }}
+              transition={{ duration: 0.35, ease: [0.25, 0.1, 0.25, 1] }}
+              className="grid md:grid-cols-2 gap-6 md:gap-8 lg:gap-10 items-center"
             >
-              {activeTab.type === "single" ? (
-                <PhoneMockup
-                  src={activeTab.src}
-                  alt={activeTab.label}
-                  className="w-52 sm:w-60 md:w-64 phone-shadow"
-                />
-              ) : (
-                <div className="w-full overflow-x-auto pb-4 scrollbar-hide">
-                  <div className="flex justify-start md:justify-center gap-4 px-4 md:px-0 w-max md:w-full mx-auto">
-                    {activeTab.screens.map((screen, i) => (
-                      <motion.div
-                        key={screen.label}
-                        initial={{ opacity: 0, y: 15 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.3, delay: i * 0.08 }}
-                        className="flex flex-col items-center flex-shrink-0"
-                      >
-                        <PhoneMockup
-                          src={screen.src}
-                          alt={screen.label}
-                          className="w-44 sm:w-48 md:w-52 phone-shadow"
-                        />
-                        <p className="mt-2 text-xs font-medium text-muted-foreground">
-                          {screen.label}
-                        </p>
-                      </motion.div>
-                    ))}
-                  </div>
+              <div className="flex justify-center md:justify-end">
+                {activeTab.type === "single" ? (
+                  <PhoneMockup
+                    sources={activeTab.sources}
+                    alt={activeTab.label}
+                    className="w-56 sm:w-64 md:w-72 phone-shadow"
+                  />
+                ) : (
+                  <ScreenshotCarousel slides={activeTab.slides} />
+                )}
+              </div>
+
+              <div className="max-w-md mx-auto md:mx-0 text-center md:text-left">
+                <div className="inline-flex items-center gap-2 mb-4">
+                  <span className="font-mono text-xs text-primary tracking-widest">
+                    {tabNumber}
+                  </span>
+                  <span className="h-px w-8 bg-primary/40" />
+                  <span className="text-[10px] uppercase tracking-widest text-muted-foreground font-medium">
+                    {activeTab.label}
+                  </span>
                 </div>
-              )}
-              <div className="mt-6 text-center">
-                <p className="font-display font-semibold text-foreground text-lg">
-                  {activeTab.label}
+
+                <h3 className="text-2xl md:text-3xl lg:text-4xl font-display font-bold text-gradient-white mb-4 leading-tight">
+                  {activeTab.tagline}
+                </h3>
+
+                <p className="text-muted-foreground leading-relaxed mb-6">
+                  {activeTab.body}
                 </p>
-                <p className="text-sm text-muted-foreground">
-                  {activeTab.desc}
-                </p>
+
+                <ul className="space-y-2.5">
+                  {activeTab.bullets.map((bullet, i) => (
+                    <motion.li
+                      key={bullet}
+                      initial={{ opacity: 0, x: -8 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ duration: 0.3, delay: 0.15 + i * 0.07 }}
+                      className="flex items-start gap-2.5 justify-center md:justify-start"
+                    >
+                      <span className="mt-0.5 w-5 h-5 rounded-full bg-primary/10 flex items-center justify-center shrink-0">
+                        <Check className="w-3 h-3 text-primary" />
+                      </span>
+                      <span className="text-sm text-foreground/90">{bullet}</span>
+                    </motion.li>
+                  ))}
+                </ul>
               </div>
             </motion.div>
           </AnimatePresence>
