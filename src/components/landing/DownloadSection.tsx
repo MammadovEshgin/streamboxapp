@@ -36,7 +36,7 @@ const DownloadSection = () => {
 
           <div className="flex justify-center">
             <motion.a
-              href="https://github.com/MammadovEshgin/streamboxapp/releases/download/v1.0.0/StreamBox.apk"
+              href="https://github.com/MammadovEshgin/streamboxapp/releases/latest/download/StreamBox.apk"
               download="StreamBox.apk"
               whileHover={{ scale: 1.03 }}
               whileTap={{ scale: 0.97 }}
