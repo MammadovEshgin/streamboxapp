@@ -112,8 +112,7 @@
   }
 
   .phone-shadow {
-    filter: drop-shadow(0 25px 50px hsl(0 0% 0% / 0.6))
-            drop-shadow(0 0 40px hsl(142 76% 45% / 0.15));
+    filter: drop-shadow(0 25px 50px hsl(0 0% 0% / 0.6));
   }
 
   .glass-card {

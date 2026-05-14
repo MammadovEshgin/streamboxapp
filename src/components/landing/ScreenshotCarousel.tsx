@@ -39,15 +39,15 @@ const ScreenshotCarousel = ({ slides, autoplayMs = 4000 }: ScreenshotCarouselPro
   }, [emblaApi, autoplayMs]);
 
   return (
-    <div className="w-full flex flex-col items-center">
-      <div className="overflow-hidden w-full max-w-[260px] sm:max-w-[280px] md:max-w-[300px]" ref={emblaRef}>
+    <div className="flex flex-col items-center">
+      <div className="overflow-hidden w-56 sm:w-64 md:w-72" ref={emblaRef}>
         <div className="flex">
           {slides.map((slide) => (
             <div key={slide.label} className="flex-[0_0_100%] min-w-0 flex justify-center">
               <PhoneMockup
                 sources={slide.sources}
                 alt={slide.label}
-                className="w-52 sm:w-60 md:w-64 phone-shadow"
+                className="w-56 sm:w-64 md:w-72 phone-shadow"
               />
             </div>
           ))}
