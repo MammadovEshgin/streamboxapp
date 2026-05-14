@@ -117,7 +117,6 @@ const ScreenshotsSection = () => {
 
   return (
     <section id="app-preview" className="py-24 md:py-32 relative overflow-hidden">
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] rounded-full bg-primary/5 blur-[150px] pointer-events-none" />
 
       <div className="container relative" ref={ref}>
         <motion.div
@@ -166,7 +165,7 @@ const ScreenshotsSection = () => {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -8 }}
               transition={{ duration: 0.35, ease: [0.25, 0.1, 0.25, 1] }}
-              className="grid md:grid-cols-2 gap-6 md:gap-8 lg:gap-10 items-center"
+              className="grid md:grid-cols-2 gap-10 md:gap-12 lg:gap-16 items-center"
             >
               <div className="flex justify-center md:justify-end">
                 {activeTab.type === "single" ? (
