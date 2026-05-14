@@ -1,73 +1,143 @@
-# Welcome to your Lovable project
+# StreamBox
 
-## Project info
+> Landing page and download portal for StreamBox — a premium Android app for streaming movies and series.
 
-**URL**: https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID
+<p align="center">
+  <img src="src/assets/logo.png" alt="StreamBox logo" width="120" />
+</p>
 
-## How can I edit this code?
+---
 
-There are several ways of editing your application.
+## Live Site
 
-**Use Lovable**
+| Environment | URL |
+|---|---|
+| Production | [streamboxapp.pages.dev](https://streamboxapp.pages.dev) |
+| Custom domain | [streamboxapp.stream](https://streamboxapp.stream) *(when configured)* |
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID) and start prompting.
+---
 
-Changes made via Lovable will be committed automatically to this repo.
+## Tech Stack
 
-**Use your preferred IDE**
+| Layer | Technology |
+|---|---|
+| Framework | [React 18](https://react.dev) + [TypeScript](https://www.typescriptlang.org) |
+| Build tool | [Vite 5](https://vitejs.dev) (SWC) |
+| Styling | [Tailwind CSS 3](https://tailwindcss.com) |
+| Animations | [Framer Motion](https://www.framer.com/motion) |
+| Icons | [Lucide React](https://lucide.dev) |
+| Fonts | [Space Grotesk](https://fonts.google.com/specimen/Space+Grotesk) (headings) · [Inter](https://fonts.google.com/specimen/Inter) (body) |
+| Hosting | [Cloudflare Pages](https://pages.cloudflare.com) |
+| APK hosting | [GitHub Releases](https://github.com/MammadovEshgin/streamboxapp/releases) |
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+---
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+## Project Structure
 
-Follow these steps:
+```
+├── public/
+│   ├── favicon.ico          # App icon (multi-size ICO)
+│   ├── _headers              # Cloudflare cache & security headers
+│   ├── _redirects             # SPA catch-all for deep links
+│   ├── robots.txt
+│   └── sitemap.xml
+├── src/
+│   ├── assets/
+│   │   ├── logo.png           # Brand logo
+│   │   └── screens/           # App screenshots (WebP, 2 sizes each)
+│   │       └── manifest.ts    # Typed screen imports
+│   ├── components/
+│   │   ├── landing/           # Page-level components
+│   │   │   ├── Navbar.tsx
+│   │   │   ├── HeroSection.tsx
+│   │   │   ├── FeaturesSection.tsx
+│   │   │   ├── ScreenshotsSection.tsx
+│   │   │   ├── AppShowcase.tsx
+│   │   │   ├── DownloadSection.tsx
+│   │   │   ├── Footer.tsx
+│   │   │   ├── PhoneMockup.tsx
+│   │   │   └── ScreenshotCarousel.tsx
+│   │   └── ui/                # Shared UI primitives
+│   │       ├── sonner.tsx
+│   │       └── tooltip.tsx
+│   ├── lib/
+│   │   └── utils.ts           # Tailwind merge helper
+│   ├── pages/
+│   │   ├── Index.tsx           # Home page
+│   │   └── NotFound.tsx        # 404 page
+│   ├── App.tsx                 # Root component + router
+│   ├── main.tsx                # Entry point + font imports
+│   └── index.css               # Design tokens + utility classes
+├── index.html                  # HTML shell
+├── tailwind.config.ts
+├── vite.config.ts
+├── tsconfig.json
+└── package.json
+```
 
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
+---
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
+## Getting Started
 
-# Step 3: Install the necessary dependencies.
-npm i
+### Prerequisites
 
-# Step 4: Start the development server with auto-reloading and an instant preview.
+- **Node.js** ≥ 20 ([install via nvm](https://github.com/nvm-sh/nvm))
+- **npm** ≥ 10
+
+### Install & Run
+
+```bash
+# Clone the repository
+git clone https://github.com/MammadovEshgin/streamboxapp.git
+cd streamboxapp
+
+# Install dependencies
+npm install
+
+# Start dev server (http://localhost:8080)
 npm run dev
 ```
 
-**Edit a file directly in GitHub**
+### Build for Production
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+```bash
+npm run build    # Output → dist/
+npm run preview  # Preview the production build locally
+```
 
-**Use GitHub Codespaces**
+---
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+## Deployment
 
-## What technologies are used for this project?
+This project is deployed to **Cloudflare Pages** with automatic Git integration.
 
-This project is built with:
+**Every push to `main` triggers a new deployment.**
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+| Setting | Value |
+|---|---|
+| Framework preset | React (Vite) |
+| Build command | `npm run build` |
+| Output directory | `dist` |
+| Node version | `20` (set via `NODE_VERSION` env var) |
 
-## How can I deploy this project?
+---
 
-Simply open [Lovable](https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID) and click on Share -> Publish.
+## Updating the APK
 
-## Can I connect a custom domain to my Lovable project?
+The Android APK is hosted via **GitHub Releases** to bypass the 100MB Git file size limit.
 
-Yes, you can!
+### Steps to release a new version:
 
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
+1. Go to [Releases](https://github.com/MammadovEshgin/streamboxapp/releases).
+2. Click **"Draft a new release"**.
+3. Create a new tag (e.g., `v1.1.0`).
+4. Upload the new `.apk` file.
+5. Publish the release.
+6. Update the download URL in `src/components/landing/DownloadSection.tsx`.
+7. Commit, push, and Cloudflare auto-deploys.
 
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/features/custom-domain#custom-domain)
+---
+
+## License
+
+This project is proprietary. All rights reserved.
