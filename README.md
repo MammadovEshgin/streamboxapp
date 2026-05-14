@@ -10,7 +10,7 @@ This repository contains the official landing page and download portal for the a
 
 ## Links
 
-- **Website** — [streamboxapp.pages.dev](https://streamboxapp.pages.dev)
+- **Website** — [streamboxapp.stream](https://streamboxapp.stream)
 - **Download APK** — [Latest Release](https://github.com/MammadovEshgin/streamboxapp/releases/latest)
 
 ## License
