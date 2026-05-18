@@ -57,7 +57,7 @@ const DownloadSection = () => {
           </div>
 
           <p className="mt-6 text-[10px] font-mono text-muted-foreground/60 break-all px-4">
-            sha256:01df895faba952a1b13090b655053a1d981a9aec10a73feac03ac43fb8d6a882
+            sha256:1763c25305b70bc887aef789ed30969d3c9f57f9094cf2f2977a4d03a675714a
           </p>
           <p className="mt-2 text-xs text-muted-foreground">
             Direct APK download • iOS coming later
