@@ -26,21 +26,21 @@ const Navbar = () => {
       className="fixed top-0 left-0 right-0 z-50 glass-card"
     >
       <div className="container flex items-center justify-between h-16 md:h-20">
-        <a href="#top" className="flex items-center gap-2.5">
+        <a href="#top" className="flex items-center gap-2.5 group">
           <div className="relative w-9 h-9 flex items-center justify-center">
             <div
               aria-hidden
-              className="absolute inset-0 rounded-full bg-primary/40 blur-md"
+              className="absolute inset-0 rounded-full bg-primary/40 blur-md group-hover:bg-primary/65 transition-all duration-300"
             />
             <img
               src={logo}
               alt="StreamBox logo"
-              className="relative w-9 h-9 object-contain"
+              className="relative w-9 h-9 object-contain group-hover:scale-105 transition-transform duration-300"
               width={36}
               height={36}
             />
           </div>
-          <span className="font-display font-bold text-lg text-foreground tracking-tight">
+          <span className="font-display font-bold text-lg text-foreground tracking-tight group-hover:text-primary transition-colors duration-300">
             StreamBox
           </span>
         </a>
