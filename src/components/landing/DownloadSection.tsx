@@ -60,7 +60,7 @@ const DownloadSection = () => {
             sha256:08b8eb33638d76a99d1b095cb7ce86ab02e7240b32b53eb3efe429fb0837bf13
           </p>
           <p className="mt-2 text-xs text-muted-foreground">
-            Direct APK download • iOS coming later
+            Direct APK download • Android TV coming soon
           </p>
         </motion.div>
       </div>
