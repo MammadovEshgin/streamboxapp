@@ -22,7 +22,7 @@ const Footer = () => (
       <p className="text-xs italic text-muted-foreground/70 font-display tracking-wide">
         "What is <span className="text-primary font-medium">Earth</span> without <span className="text-primary font-medium">art</span>? Just a rock."
       </p>
-      <p className="text-xs text-muted-foreground">Made by <span className="text-foreground font-medium">Eshgin</span></p>
+      <p className="text-xs text-muted-foreground">Made by <span className="text-foreground font-medium">Ekşın</span></p>
     </div>
   </footer>
 );
