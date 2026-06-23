@@ -57,7 +57,7 @@ const DownloadSection = () => {
           </div>
 
           <p className="mt-6 text-[10px] font-mono text-muted-foreground/60 break-all px-4">
-            sha256:a3b5fbd92fdbb65bd50ab94e7582851a20166eefcdad9e4d1692f403a8187f30
+            sha256:faf9464b579af6ea011c31e489b4c5099c0d40e229c3c63a6598b3a7eb92e070
           </p>
           <p className="mt-2 text-xs text-muted-foreground">
             Direct APK download • Android TV coming soon
