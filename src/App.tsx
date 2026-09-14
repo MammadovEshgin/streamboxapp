@@ -1,14 +1,23 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Index from "./pages/Index";
-import NotFound from "./pages/NotFound";
+import AppShowcase from "@/components/AppShowcase";
+import DownloadSection from "@/components/DownloadSection";
+import FeaturesSection from "@/components/FeaturesSection";
+import Footer from "@/components/Footer";
+import HeroSection from "@/components/HeroSection";
+import Navbar from "@/components/Navbar";
+import ScreenshotsSection from "@/components/ScreenshotsSection";
 
-const App = () => (
-  <BrowserRouter>
-    <Routes>
-      <Route path="/" element={<Index />} />
-      <Route path="*" element={<NotFound />} />
-    </Routes>
-  </BrowserRouter>
-);
-
-export default App;
+export default function App() {
+  return (
+    <div className="min-h-screen bg-background">
+      <Navbar />
+      <main>
+        <HeroSection />
+        <FeaturesSection />
+        <ScreenshotsSection />
+        <AppShowcase />
+        <DownloadSection />
+      </main>
+      <Footer />
+    </div>
+  );
+}

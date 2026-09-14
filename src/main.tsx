@@ -1,12 +1,25 @@
-import { createRoot } from "react-dom/client";
-import "@fontsource/space-grotesk/400.css";
-import "@fontsource/space-grotesk/500.css";
-import "@fontsource/space-grotesk/600.css";
-import "@fontsource/space-grotesk/700.css";
-import "@fontsource/inter/400.css";
-import "@fontsource/inter/500.css";
-import "@fontsource/inter/600.css";
-import App from "./App.tsx";
+import "@fontsource-variable/inter";
+import "@fontsource-variable/space-grotesk";
 import "./index.css";
 
-createRoot(document.getElementById("root")!).render(<App />);
+import { StrictMode } from "react";
+import { createRoot, hydrateRoot } from "react-dom/client";
+import App from "@/App";
+import { initDeviceType } from "@/lib/device";
+import { initPerformanceTier } from "@/lib/performance";
+
+initDeviceType();
+initPerformanceTier();
+
+const container = document.getElementById("root");
+if (!container) throw new Error("index.html is missing the #root element");
+
+const app = (
+  <StrictMode>
+    <App />
+  </StrictMode>
+);
+
+// Production HTML is prerendered by scripts/prerender.mjs; the dev server serves an empty root.
+if (container.firstElementChild) hydrateRoot(container, app);
+else createRoot(container).render(app);
